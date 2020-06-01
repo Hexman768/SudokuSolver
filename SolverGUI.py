@@ -22,15 +22,15 @@ def draw_grid():
         cell_size = width / 9
         square_size = width / 3
         # Draw light gray lines
-        for x in range(0, width, int(cell_size)):
-                pygame.draw.line(screen, LIGHT_GRAY, (x,0), (x,height))
-        for y in range(0, height, int(cell_size)):
-                pygame.draw.line(screen, LIGHT_GRAY, (0,y), (width,y))
+        for x in range(width):
+                for y in range(height):
+                        rect = pygame.Rect(x*cell_size, y*cell_size, cell_size, cell_size)
+                        pygame.draw.rect(screen, LIGHT_GRAY, rect, 1)
         # Draw black lines
-        for x in range(0, width, int(square_size)):
-                pygame.draw.line(screen, BLACK, (x,0), (x,height))
-        for y in range(0, height, int(square_size)):
-                pygame.draw.line(screen, BLACK, (0,y), (width,y))
+        for x in range(width):
+                for y in range(height):
+                        rect = pygame.Rect(x*square_size, y*square_size, square_size, square_size)
+                        pygame.draw.rect(screen, BLACK, rect, 1)
 
 def main():
         pygame.init()
