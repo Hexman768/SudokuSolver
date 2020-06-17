@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 from SSolver import *
 
 width = 270
@@ -7,7 +7,6 @@ screen = pygame.display.set_mode((width, height))
 
 screen.fill((255, 255, 255))
 pygame.font.init()
-pygame.display.flip()
 font = pygame.font.SysFont('Comic Sans MS', 12)
 
 BLACK = (0,0,0)
@@ -65,7 +64,7 @@ def draw_grid():
         for x in range(width):
                 for y in range(height):
                         rect = pygame.Rect(x*square_size, y*square_size, square_size, square_size)
-                        pygame.draw.rect(screen, BLACK, rect, 1)
+                        pygame.draw.rect(screen, BLACK, rect, 1) 
 
 def main():
         pygame.init()
@@ -75,18 +74,18 @@ def main():
         BASICFONT = pygame.font.Font('freesansbold.ttf', BASICFONTSIZE)
         clock = pygame.time.Clock()
         fps = 30
-        running = True
         mouse_clicked = False
         m_x = 0 # mouse x value
         m_y = 0 # mouse y value
-        draw_grid()
         CG = initiate_grid()
-        display_cells(CG) 
-        while (running):
+        display_cells(CG)
+        draw_grid()
+        while True:
                 mouse_clicked = False
                 for event in pygame.event.get():
                         if (event.type == pygame.QUIT):
-                                running = False
+                                pygame.quit()
+                                sys.exit()
                         elif (event.type == pygame.MOUSEMOTION):
                                 m_x, m_y = event.pos
                         elif (event.type == pygame.MOUSEBUTTONUP):
@@ -105,3 +104,4 @@ def main():
 
 if __name__ == '__main__':
         main()
+
